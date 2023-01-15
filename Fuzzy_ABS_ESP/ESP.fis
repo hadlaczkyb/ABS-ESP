@@ -1,0 +1,71 @@
+[System]
+Name='ESP_moment2'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=25
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='YawRateError'
+Range=[-6 6]
+NumMFs=5
+MF1='NB':'trapmf',[-10.8 -7.2 -4.8 -1.2]
+MF2='NS':'trimf',[-3 -1.5 0]
+MF3='ZE':'trimf',[-1.2 0 1.2]
+MF4='PS':'trimf',[0 1.5 3]
+MF5='PB':'trapmf',[1.2 4.8 7.2 10.8]
+
+[Input2]
+Name='SlipError'
+Range=[-6 6]
+NumMFs=5
+MF1='NB':'trapmf',[-10.8 -7.2 -4.8 -1.2]
+MF2='NS':'trimf',[-4.2 -1.8 0]
+MF3='ZE':'trimf',[-1.2 0 1.2]
+MF4='PS':'trimf',[0 1.8 4.2]
+MF5='PB':'trapmf',[1.2 4.8 7.2 10.8]
+
+[Output1]
+Name='YawMoment'
+Range=[-1 1]
+NumMFs=7
+MF1='NB':'trapmf',[-1.5 -1.25 -0.75 -0.5]
+MF2='NM':'trimf',[-0.75 -0.5 -0.25]
+MF3='NS':'trimf',[-0.5 -0.1 0]
+MF4='ZE':'trimf',[-0.1 0 0.1]
+MF5='PS':'trimf',[0 0.1 0.5]
+MF6='PM':'trimf',[0.25 0.5 0.75]
+MF7='PB':'trapmf',[0.5 0.75 1.25 1.5]
+
+[Rules]
+5 1, 1 (1) : 1
+5 2, 1 (1) : 1
+5 3, 2 (1) : 1
+5 4, 1 (1) : 1
+5 5, 1 (1) : 1
+4 1, 1 (1) : 1
+4 2, 2 (1) : 1
+4 3, 3 (1) : 1
+4 4, 2 (1) : 1
+4 5, 3 (1) : 1
+1 1, 7 (1) : 1
+1 2, 7 (1) : 1
+1 3, 6 (1) : 1
+1 4, 7 (1) : 1
+1 5, 7 (1) : 1
+2 1, 7 (1) : 1
+2 2, 6 (0.5) : 1
+2 3, 5 (0.5) : 1
+2 4, 6 (0.5) : 1
+2 5, 5 (1) : 1
+3 1, 3 (1) : 1
+3 2, 3 (1) : 1
+3 3, 4 (1) : 1
+3 4, 5 (1) : 1
+3 5, 5 (1) : 1
